@@ -33,8 +33,8 @@ function App () {
 
     questions.forEach((questions, index) => {
       if (questions.category === value) {
-        const answer = decodeString(questions.answer)
-        const question = decodeString(questions.question)
+        const answer = questions.answer
+        const question = questions.question
         setFlashcards([
           ...flashcards,
           {

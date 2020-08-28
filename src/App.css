@@ -63,6 +63,9 @@ body {
   cursor: pointer;
   transform: perspective(1000px) rotateY(var(--rotate-y, 0))
     translateY(var(--translate-y, 0));
+
+  width: 560px;
+  height: 340px;
 }
 
 .card:hover {
