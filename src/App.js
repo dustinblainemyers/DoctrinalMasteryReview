@@ -30,21 +30,21 @@ function App () {
 
   function handleSubmit (e) {
     e.preventDefault()
-
+    const currentCards = []
     questions.forEach((questions, index) => {
       if (questions.category === value) {
         const answer = questions.answer
         const question = questions.question
-        setFlashcards([
-          ...flashcards,
-          {
-            id: `${index}-${Date.now()}`,
-            answer: answer,
-            question: question
-          }
-        ])
+
+        currentCards.push({
+          id: `${index}-${Date.now()}`,
+          answer: answer,
+          question: question
+        })
       }
     })
+
+    setFlashcards(currentCards)
   }
 
   return (
