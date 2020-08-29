@@ -28,8 +28,14 @@ export default function Flashcard ({ flashcard }) {
       className={`card ${flip ? 'flip' : ''}`}
       onClick={() => setFlip(!flip)}
     >
+      <div></div>
       <div className='front'>{flashcard.question}</div>
-      <div className='back'>{flashcard.answer}</div>
+      <div className='back'>
+        <span>{flashcard.answer}</span>
+        <span>
+          <img src={require('./images/flashCard1.webp')} alt='House image' />
+        </span>
+      </div>
     </div>
   )
 }

@@ -54,12 +54,11 @@ body {
   transform-style: preserve-3d;
   transition: 600ms;
   cursor: pointer;
-  position: relative;
   transform: perspective(1000px) rotateY(var(--rotate-y, 0))
     translateY(var(--translate-y, 0));
 
   min-width: 200px;
-  height: 300px;
+  max-height: 600px;
 
   margin-bottom: 10px;
 }
@@ -86,12 +85,22 @@ body {
 
 .card .back {
   transform: rotateY(180deg);
-
-  overflow-wrap: break-word;
-
-  overflow: none;
 }
 
 pre {
   white-space: pre-wrap;
+  min-width: 200px;
+  height: 300px;
+  overflow: scroll;
+  display: inline;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.back {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
