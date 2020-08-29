@@ -7,6 +7,7 @@ const questions = require('./jsontest.json')
 function App () {
   const [flashcards, setFlashcards] = useState([])
   const [value, setValue] = useState([])
+  const [currentCard, setCurrentCard] = useState({})
   const categoryKey = []
   questions.forEach(questions => {
     const category = questions.category
@@ -46,6 +47,9 @@ function App () {
     })
 
     setFlashcards(currentCards)
+    if (currentCards.length > 0) {
+      setCurrentCard(currentCards[0])
+    }
   }
 
   return (
@@ -66,7 +70,7 @@ function App () {
         </div>
       </form>
       <div className='container'>
-        <FlashcardList flashcards={flashcards} />
+        <FlashcardList currentCard={currentCard} />
       </div>
     </>
   )

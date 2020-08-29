@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 
-export default function Flashcard ({ flashcard }) {
+export default function Flashcard ({ currentCard }) {
   const [flip, setFlip] = useState(false)
   const [height, setHeight] = useState('initial')
 
@@ -29,12 +29,12 @@ export default function Flashcard ({ flashcard }) {
       onClick={() => setFlip(!flip)}
     >
       <div></div>
-      <div className='front'>{flashcard.question}</div>
+      <div className='front'>{currentCard.question}</div>
       <div className='back'>
-        <span>{flashcard.answer}</span>
-        <span>
-          <img src={require('./images/flashCard1.webp')} alt='House image' />
-        </span>
+        <div className='back-image'>
+          {/* <img src={require('./images/flashCard1.webp')} alt='House image' /> */}
+        </div>
+        <div>{currentCard.answer}</div>
       </div>
     </div>
   )
