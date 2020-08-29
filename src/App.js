@@ -33,8 +33,9 @@ function App () {
     const currentCards = []
     questions.forEach((questions, index) => {
       if (questions.category === value) {
-        const answer = questions.answer
-        const question = questions.question
+        const answer = <pre>{questions.answer}</pre>
+
+        const question = decodeString(questions.question)
 
         currentCards.push({
           id: `${index}-${Date.now()}`,

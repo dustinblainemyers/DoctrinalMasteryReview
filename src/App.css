@@ -43,13 +43,6 @@ body {
   background-color: hsl(200, 100%, 40%);
 }
 
-.card-grid {
-  display: grid;
-  align-items: center;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1rem;
-}
-
 .card {
   display: flex;
   justify-content: center;
@@ -59,49 +52,46 @@ body {
   box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.3);
   background-color: white;
   transform-style: preserve-3d;
-  transition: 150ms;
+  transition: 600ms;
   cursor: pointer;
+  position: relative;
   transform: perspective(1000px) rotateY(var(--rotate-y, 0))
     translateY(var(--translate-y, 0));
 
-  width: 560px;
-  height: 340px;
+  min-width: 200px;
+  height: 300px;
+
+  margin-bottom: 10px;
 }
 
 .card:hover {
-  --translate-y: -2px;
+  --translate-y: 0px;
   box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.5);
 }
 
 .card.flip {
-  --rotate-y: 180deg;
+  --rotate-y: 179.5deg;
 }
 
 .card .front {
   left: 0;
+  position: absolute;
 }
 
 .card .front,
 .card .back {
-  position: absolute;
   padding: 1rem;
   backface-visibility: hidden;
 }
 
 .card .back {
   transform: rotateY(180deg);
+
+  overflow-wrap: break-word;
+
+  overflow: none;
 }
 
-.flashcard-options {
-  margin-top: 0.5rem;
-}
-
-.flashcard-option {
-  margin-top: 0.25rem;
-  color: #555;
-  font-size: 0.75rem;
-}
-
-.flashcard-option:first-child {
-  margin-top: 0;
+pre {
+  white-space: pre-wrap;
 }
