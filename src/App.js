@@ -5,9 +5,10 @@ import './App.css'
 const questions = require('./jsontest.json')
 
 function App () {
-  const [flashcards, setFlashcards] = useState([])
+  const [flashcards, setFlashcards] = useState(questions)
   const [value, setValue] = useState([])
-  const [currentCard, setCurrentCard] = useState({})
+  const [currentCard, setCurrentCard] = useState(questions[0])
+
   const categoryKey = []
   questions.forEach(questions => {
     const category = questions.category
@@ -24,6 +25,10 @@ function App () {
     return textArea.value
   }
 
+  function nextCard () {}
+
+  function previousCard () {}
+
   function handleCategoryChange (e) {
     e.preventDefault()
     setValue(e.target.value)
@@ -31,14 +36,14 @@ function App () {
 
   function handleSubmit (e) {
     e.preventDefault()
-    const currentCards = []
+    const currentDeck = []
     questions.forEach((questions, index) => {
       if (questions.category === value) {
         const answer = <pre>{questions.answer}</pre>
 
         const question = decodeString(questions.question)
 
-        currentCards.push({
+        currentDeck.push({
           id: `${index}-${Date.now()}`,
           answer: answer,
           question: question
@@ -46,9 +51,9 @@ function App () {
       }
     })
 
-    setFlashcards(currentCards)
-    if (currentCards.length > 0) {
-      setCurrentCard(currentCards[0])
+    setFlashcards(currentDeck)
+    if (currentDeck.length > 0) {
+      setCurrentCard(currentDeck[0])
     }
   }
 
@@ -58,7 +63,7 @@ function App () {
         <div className='form-group'>
           <label htmlFor='category'>Category</label>
           <select id='category' value={value} onChange={handleCategoryChange}>
-            <option value='Select Category'>Select Category</option>
+            <option value='All Categories'>All Categories</option>
             {categoryKey.map(category => {
               return <option value={category}>{category}</option>
             })}
@@ -66,12 +71,14 @@ function App () {
         </div>
 
         <div className='form-group'>
-          <button className='btn'>Show Cards</button>
+          <button className='btn'>Update Deck</button>
         </div>
       </form>
       <div className='container'>
         <FlashcardList currentCard={currentCard} />
       </div>
+      <button onClick={previousCard}>Previous</button>
+      <button onClick={nextCard}>Next</button>
     </>
   )
 }
