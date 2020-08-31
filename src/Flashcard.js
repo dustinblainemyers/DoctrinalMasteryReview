@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-const backgroundImage = require('./images/flashCard1.webp')
 export default function Flashcard ({ currentCard }) {
   const [flip, setFlip] = useState(false)
-
+  const backgroundImage = require('./images/flashCard' +
+    currentCard.id +
+    '.png')
   return (
     <div
       className={`card ${flip ? 'flip' : ''}`}
