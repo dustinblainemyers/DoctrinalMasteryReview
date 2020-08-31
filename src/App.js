@@ -53,26 +53,25 @@ function App () {
   function handleSubmit (e) {
     e.preventDefault()
 
-    console.log('update deck pushed')
-    console.log('category value is', categoryValue)
+    // console.log('update deck pushed')
+    // console.log('category value is', categoryValue)
 
-    questions.forEach((questions, index) => {
-      console.log('a loop over the questions')
-      if (questions.category === categoryValue) {
-        const answer = <pre>{questions.answer}</pre>
-        const id = <pre>{questions.id}</pre>
-        const question = decodeString(questions.question)
+    // questions.forEach((questions, index) => {
+    //   console.log('a loop over the questions')
+    //   if (questions.category === categoryValue) {
+    //     const answer = <pre>{questions.answer}</pre>
+    //     const id = <pre>{questions.id}</pre>
+    //     const question = decodeString(questions.question)
 
-        currentDeck.push({
-          id: id,
-          answer: answer,
-          question: question
-        })
-      }
-      console.log(currentDeck)
-      setFlashcards(currentDeck)
-      setCurrentCard(currentDeck[0])
-    })
+    //     currentDeck.push({
+    //       id: id,
+    //       answer: answer,
+    //       question: question
+    //     })
+    //   }
+    // })
+    // console.log(currentDeck)
+    // setFlashcards(currentDeck)
 
     // if (currentDeck.length > 0) {
     //   setCurrentCard(currentDeck[0])
