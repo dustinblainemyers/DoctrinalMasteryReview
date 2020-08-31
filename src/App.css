@@ -121,6 +121,15 @@ pre {
   height: 100%;
 }
 
+.answer-placeholder {
+  max-width: 90%;
+  max-height: 90%;
+  white-space: pre-wrap;
+  min-width: 200px;
+  height: 350px;
+  overflow: auto;
+}
+
 .carousel-buttons {
   margin: 0 auto;
   text-align: center;

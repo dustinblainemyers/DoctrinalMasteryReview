@@ -11,7 +11,7 @@ function App () {
   const [questionNumber, setquestionNumber] = useState(0)
   // let count = 0
   const [currentCard, setCurrentCard] = useState(flashcards[questionNumber])
-
+  let currentDeck = []
   const categoryKey = []
   questions.forEach(questions => {
     const category = questions.category
@@ -19,8 +19,6 @@ function App () {
       categoryKey.push(category)
     }
   })
-
-  console.log(categoryKey)
 
   function decodeString (str) {
     const textArea = document.createElement('textarea')
@@ -37,7 +35,7 @@ function App () {
   }
   useEffect(() => {
     setCurrentCard(questions[questionNumber])
-  }, [questionNumber])
+  }, [questionNumber, currentCard])
 
   function previousCard () {
     if (questionNumber > 0) {
@@ -55,25 +53,27 @@ function App () {
   function handleSubmit (e) {
     e.preventDefault()
 
-    // if (categoryValue === 'All Categories' && bookValue === 'All Books') {
-    // }
+    console.log('update deck pushed')
+    console.log('category value is', categoryValue)
 
-    const currentDeck = flashcards
     questions.forEach((questions, index) => {
+      console.log('a loop over the questions')
       if (questions.category === categoryValue) {
         const answer = <pre>{questions.answer}</pre>
-
+        const id = <pre>{questions.id}</pre>
         const question = decodeString(questions.question)
 
         currentDeck.push({
-          id: `${index}-${Date.now()}`,
+          id: id,
           answer: answer,
           question: question
         })
       }
+      console.log(currentDeck)
+      setFlashcards(currentDeck)
+      setCurrentCard(currentDeck[0])
     })
 
-    setFlashcards(currentDeck)
     // if (currentDeck.length > 0) {
     //   setCurrentCard(currentDeck[0])
     // }

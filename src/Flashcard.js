@@ -9,7 +9,6 @@ export default function Flashcard ({ currentCard }) {
       className={`card ${flip ? 'flip' : ''}`}
       onClick={e => {
         if (e.target.id === 'back') {
-          console.log('back')
         } else {
           setFlip(!flip)
         }
@@ -23,9 +22,8 @@ export default function Flashcard ({ currentCard }) {
             backgroundImage: 'url(' + backgroundImage + ')'
           }}
           id='back'
-          onClick={console.log('hello')}
         ></div>
-        <div>{currentCard.answer}</div>
+        <div className='answer-placeholder'>{currentCard.answer}</div>
       </div>
     </div>
   )
