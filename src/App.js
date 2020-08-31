@@ -5,13 +5,13 @@ import './App.css'
 const questions = require('./jsontest.json')
 
 function App () {
-  const [flashcards, setFlashcards] = useState(questions)
+  const [flashcards] = useState(questions)
   const [categoryValue, setcategoryValue] = useState('All Categories')
   // const [bookValue, setbookValue] = useState([])
   const [questionNumber, setquestionNumber] = useState(0)
   // let count = 0
   const [currentCard, setCurrentCard] = useState(flashcards[questionNumber])
-  let currentDeck = []
+  // let currentDeck = []
   const categoryKey = []
   questions.forEach(questions => {
     const category = questions.category
@@ -20,11 +20,11 @@ function App () {
     }
   })
 
-  function decodeString (str) {
-    const textArea = document.createElement('textarea')
-    textArea.innerHTML = str
-    return textArea.categoryValue
-  }
+  // function decodeString (str) {
+  //   const textArea = document.createElement('textarea')
+  //   textArea.innerHTML = str
+  //   return textArea.categoryValue
+  // }
 
   function nextCard () {
     if (questions.length > questionNumber + 1) {
