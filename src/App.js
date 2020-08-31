@@ -7,10 +7,10 @@ const questions = require('./jsontest.json')
 function App () {
   const [flashcards, setFlashcards] = useState(questions)
   const [categoryValue, setcategoryValue] = useState('All Categories')
-  const [bookValue, setbookValue] = useState([])
+  // const [bookValue, setbookValue] = useState([])
   const [questionNumber, setquestionNumber] = useState(0)
-  let count = 0
-  const [currentCard, setCurrentCard] = useState(questions[questionNumber])
+  // let count = 0
+  const [currentCard, setCurrentCard] = useState(flashcards[questionNumber])
 
   const categoryKey = []
   questions.forEach(questions => {
@@ -55,10 +55,10 @@ function App () {
   function handleSubmit (e) {
     e.preventDefault()
 
-    if (categoryValue === 'All Categories' && bookValue === 'All Books') {
-    }
+    // if (categoryValue === 'All Categories' && bookValue === 'All Books') {
+    // }
 
-    const currentDeck = []
+    const currentDeck = flashcards
     questions.forEach((questions, index) => {
       if (questions.category === categoryValue) {
         const answer = <pre>{questions.answer}</pre>
@@ -74,9 +74,9 @@ function App () {
     })
 
     setFlashcards(currentDeck)
-    if (currentDeck.length > 0) {
-      setCurrentCard(currentDeck[0])
-    }
+    // if (currentDeck.length > 0) {
+    //   setCurrentCard(currentDeck[0])
+    // }
   }
 
   return (
@@ -103,8 +103,14 @@ function App () {
       <div className='container'>
         <FlashcardList currentCard={currentCard} />
       </div>
-      <button onClick={previousCard}>Previous</button>
-      <button onClick={nextCard}>Next</button>
+      <div className='carousel-buttons'>
+        <button className='btn' onClick={previousCard}>
+          Previous
+        </button>
+        <button className='btn' onClick={nextCard}>
+          Next
+        </button>
+      </div>
     </>
   )
 }

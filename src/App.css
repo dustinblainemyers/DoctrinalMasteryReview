@@ -1,6 +1,5 @@
 body {
-  background-color: #c8d0d2;
-  margin: 0;
+  background-color: rgb(226, 235, 227);
 }
 
 .container {
@@ -39,6 +38,16 @@ body {
   cursor: pointer;
 }
 
+.btn-large {
+  background-color: hsl(200, 100%, 50%);
+  color: white;
+  padding: 0.5em 1em;
+  border-radius: 0.3em;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
 .btn:hover {
   background-color: hsl(200, 100%, 40%);
 }
@@ -47,9 +56,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+
   position: relative;
   border-radius: 0.25rem;
-  /* box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.3); */
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.3);
   background-color: white;
   transform-style: preserve-3d;
   transition: 600ms;
@@ -58,7 +68,7 @@ body {
     translateY(var(--translate-y, 0));
 
   min-width: 200px;
-  height: 400px;
+  height: 320px;
 
   margin-bottom: 10px;
 }
@@ -105,9 +115,13 @@ pre {
 
 .back-image {
   width: 100%;
-  background-image: url("./images/flashCard1.webp");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
   height: 100%;
+}
+
+.carousel-buttons {
+  margin: 0 auto;
+  text-align: center;
 }
