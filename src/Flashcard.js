@@ -4,20 +4,22 @@ export default function Flashcard ({ currentCard }) {
   const backgroundImage = require('./images/flashCard' +
     currentCard.id +
     '.png')
-
+  const [nextCard, setNextCard] = useState(false)
   useEffect(() => {
     if (flip === true) {
       setFlip(!flip)
+      setNextCard(true)
     }
   }, [currentCard])
 
   return (
     <div
-      className={`card ${flip ? 'flip' : ''}`}
+      className={`card ${flip ? 'flip' : ''} + ${nextCard ? 'noFlip' : ''}`}
       onClick={e => {
         if (e.target.id === 'back') {
         } else {
           setFlip(!flip)
+          setNextCard(false)
         }
       }}
     >

@@ -82,6 +82,10 @@ body {
   --rotate-y: 179.5deg;
 }
 
+.card.noFlip {
+  transition: 0ms;
+}
+
 .card .front {
   position: absolute;
 }
