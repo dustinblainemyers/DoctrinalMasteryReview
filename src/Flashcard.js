@@ -1,9 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 export default function Flashcard ({ currentCard }) {
   const [flip, setFlip] = useState(false)
   const backgroundImage = require('./images/flashCard' +
     currentCard.id +
     '.png')
+
+  useEffect(() => {
+    if (flip === true) {
+      setFlip(!flip)
+    }
+  }, [currentCard])
+
   return (
     <div
       className={`card ${flip ? 'flip' : ''}`}

@@ -4,7 +4,7 @@ import Flashcard from './Flashcard'
 export default function FlashcardList ({ currentCard }) {
   return (
     <div className='card-grid'>
-      <Flashcard currentCard={currentCard} />
+      <Flashcard currentCard={currentCard} flip='false' />
     </div>
   )
 }
