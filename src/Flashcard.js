@@ -23,7 +23,10 @@ export default function Flashcard ({ currentCard }) {
         }
       }}
     >
-      <div className='front'>{currentCard.question}</div>
+      <div className='front'>
+        <p>{currentCard.question}</p>
+        <p className='book'>{currentCard.book}</p>
+      </div>
       <div className='back'>
         <div
           className='back-image'
@@ -32,7 +35,10 @@ export default function Flashcard ({ currentCard }) {
           }}
           id='back'
         ></div>
-        <div className='answer-placeholder'>{currentCard.answer}</div>
+        <div className='answer-placeholder'>
+          <p>{currentCard.answer}</p>
+          <p className='category'>{currentCard.category}</p>
+        </div>
       </div>
     </div>
   )

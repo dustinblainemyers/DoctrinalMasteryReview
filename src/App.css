@@ -33,6 +33,7 @@ body {
   background-color: hsl(200, 100%, 50%);
   color: white;
   padding: 0.5em 1em;
+  margin-right: 7px;
   border-radius: 0.3em;
   border: none;
   cursor: pointer;
@@ -90,6 +91,12 @@ body {
   position: absolute;
 }
 
+.book,
+.category {
+  margin-top: 40px;
+  font-weight: bold;
+}
+
 .card .front,
 .card .back {
   padding: 1rem;
@@ -136,5 +143,22 @@ pre {
 
 .carousel-buttons {
   margin: 0 auto;
+
   text-align: center;
+}
+
+@media (min-width: 768px) {
+  .card {
+    height: 470px;
+  }
+
+  .answer-placeholder {
+    height: 500px;
+  }
+}
+
+@media (min-width: 947px) {
+  .container {
+    margin: 1rem auto;
+  }
 }

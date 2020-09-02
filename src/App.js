@@ -39,12 +39,22 @@ function App () {
   const [bookKey, setBookKey] = useState(workingBookKey)
   const allCategories = workingCategoryKey
   const allBooks = workingBookKey
+  console.log('allCategoris', allCategories)
+  console.log('allbooks', allBooks)
 
   //when question number or current card updates, run the function below and trigger
   // a re-render
   useEffect(() => {
     setCurrentCard(flashcards[questionNumber])
-  }, [questionNumber, currentCard, flashcards, categoryKey])
+  }, [
+    questionNumber,
+    currentCard,
+    flashcards,
+    categoryKey,
+    bookKey,
+    categoryValue,
+    bookValue
+  ])
 
   function nextCard () {
     if (flashcards.length > questionNumber + 1) {
@@ -64,14 +74,15 @@ function App () {
 
   function handleCategoryChange (e) {
     e.preventDefault()
-    setcategoryValue(e.target.value)
-    if (e.target.value === 'All Categories') {
+    const newCategoryValue = e.target.value
+    setcategoryValue(newCategoryValue)
+    if (newCategoryValue === 'All Categories') {
       setCategoryKey(allCategories)
-      setBookKey(allBooks)
     } else {
       const workingCategoryValue = e.target.value
-      workingBookKey = []
-
+      const workingBookValue = bookValue
+      let workingBookKey = []
+      let workingCategoryKey = []
       questions.forEach(question => {
         const category = question.category
         const book = question.book
@@ -81,6 +92,13 @@ function App () {
           question.category === workingCategoryValue
         ) {
           workingBookKey.push(question.book)
+        }
+
+        if (
+          workingCategoryKey.indexOf(category) === -1 &&
+          question.book === workingBookValue
+        ) {
+          workingCategoryKey.push(question.category)
         }
       })
 
@@ -93,7 +111,6 @@ function App () {
     setBookValue(e.target.value)
     const workingBookValue = e.target.value
     if (e.target.value === 'All Books') {
-      setCategoryKey(allCategories)
       setBookKey(allBooks)
     } else {
       workingCategoryKey = []
