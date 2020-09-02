@@ -2,17 +2,27 @@ import React, { useState, useEffect } from 'react'
 import FlashcardList from './FlashcardList'
 import './App.css'
 
+// pull in the questions json
 const questions = require('./jsontest.json')
 
 function App () {
-  const [flashcards] = useState(questions)
+  // set flashcards array to all of the questions initially
+  const [flashcards, setFlashcards] = useState(questions)
+
+  // make sure at first the app shows all categories.
   const [categoryValue, setcategoryValue] = useState('All Categories')
   // const [bookValue, setbookValue] = useState([])
+
+  // start at first question
   const [questionNumber, setquestionNumber] = useState(0)
-  // let count = 0
+
+  //current card is what gets passed as a prop down to flashcard list component.
+  // the question number sets the indice of flashcards array that will be assigned current card
   const [currentCard, setCurrentCard] = useState(flashcards[questionNumber])
-  // let currentDeck = []
+
   const categoryKey = []
+
+  // find all unique categories in the questions and put them into category object
   questions.forEach(questions => {
     const category = questions.category
     if (categoryKey.indexOf(category) === -1) {
@@ -20,28 +30,25 @@ function App () {
     }
   })
 
-  // function decodeString (str) {
-  //   const textArea = document.createElement('textarea')
-  //   textArea.innerHTML = str
-  //   return textArea.categoryValue
-  // }
+  //when question number or current card updates, run the function below and trigger
+  // a re-render
+  useEffect(() => {
+    setCurrentCard(flashcards[questionNumber])
+  }, [questionNumber, currentCard, flashcards])
 
   function nextCard () {
-    if (questions.length > questionNumber + 1) {
+    if (flashcards.length > questionNumber + 1) {
       setquestionNumber(questionNumber + 1)
     } else {
       setquestionNumber(0)
     }
   }
-  useEffect(() => {
-    setCurrentCard(questions[questionNumber])
-  }, [questionNumber, currentCard])
 
   function previousCard () {
     if (questionNumber > 0) {
       setquestionNumber(questionNumber - 1)
     } else {
-      setquestionNumber(questions.length - 1)
+      setquestionNumber(flashcards.length - 1)
     }
   }
 
@@ -53,29 +60,19 @@ function App () {
   function handleSubmit (e) {
     e.preventDefault()
 
-    // console.log('update deck pushed')
-    // console.log('category value is', categoryValue)
+    setquestionNumber(0)
+    setFlashcards(questions)
+    if (categoryValue !== 'All Categories') {
+      const filteredByCategory = []
 
-    // questions.forEach((questions, index) => {
-    //   console.log('a loop over the questions')
-    //   if (questions.category === categoryValue) {
-    //     const answer = <pre>{questions.answer}</pre>
-    //     const id = <pre>{questions.id}</pre>
-    //     const question = decodeString(questions.question)
-
-    //     currentDeck.push({
-    //       id: id,
-    //       answer: answer,
-    //       question: question
-    //     })
-    //   }
-    // })
-    // console.log(currentDeck)
-    // setFlashcards(currentDeck)
-
-    // if (currentDeck.length > 0) {
-    //   setCurrentCard(currentDeck[0])
-    // }
+      questions.forEach(question => {
+        if (question.category === categoryValue) {
+          filteredByCategory.push(question)
+        }
+      })
+      setquestionNumber(0)
+      setFlashcards(filteredByCategory)
+    }
   }
 
   return (
