@@ -11,7 +11,7 @@ function App () {
 
   // make sure at first the app shows all categories.
   const [categoryValue, setcategoryValue] = useState('All Categories')
-  // const [bookValue, setbookValue] = useState([])
+  const [bookValue, setBookValue] = useState('All Books')
 
   // start at first question
   const [questionNumber, setquestionNumber] = useState(0)
@@ -20,21 +20,29 @@ function App () {
   // the question number sets the indice of flashcards array that will be assigned current card
   const [currentCard, setCurrentCard] = useState(flashcards[questionNumber])
 
-  const categoryKey = []
-
-  // find all unique categories in the questions and put them into category object
+  let workingCategoryKey = []
+  let workingBookKey = []
   questions.forEach(questions => {
     const category = questions.category
-    if (categoryKey.indexOf(category) === -1) {
-      categoryKey.push(category)
+    const book = questions.book
+
+    if (workingCategoryKey.indexOf(category) === -1) {
+      workingCategoryKey.push(category)
+    }
+
+    if (workingBookKey.indexOf(book) === -1) {
+      workingBookKey.push(book)
     }
   })
+
+  const [categoryKey, setCategoryKey] = useState(workingCategoryKey)
+  const [bookKey, setBookKey] = useState(workingBookKey)
 
   //when question number or current card updates, run the function below and trigger
   // a re-render
   useEffect(() => {
     setCurrentCard(flashcards[questionNumber])
-  }, [questionNumber, currentCard, flashcards])
+  }, [questionNumber, currentCard, flashcards, categoryKey])
 
   function nextCard () {
     if (flashcards.length > questionNumber + 1) {
@@ -55,6 +63,29 @@ function App () {
   function handleCategoryChange (e) {
     e.preventDefault()
     setcategoryValue(e.target.value)
+  }
+
+  function handleBookChange (e) {
+    e.preventDefault()
+    const workingBookValue = e.target.value
+    workingCategoryKey = []
+    setBookValue(e.target.value)
+
+    questions.forEach(question => {
+      const category = question.category
+      const book = question.book
+
+      if (
+        workingCategoryKey.indexOf(category) === -1 &&
+        question.book === workingBookValue
+      ) {
+        console.log('we have a book value winner')
+        console.log('current question winnder is', question)
+        workingCategoryKey.push(question.category)
+      }
+    })
+    console.log('workingCategorykey', workingCategoryKey)
+    setCategoryKey(workingCategoryKey)
   }
 
   function handleSubmit (e) {
@@ -88,6 +119,15 @@ function App () {
             <option value='All Categories'>All Categories</option>
             {categoryKey.map(categoryValue => {
               return <option value={categoryValue}>{categoryValue}</option>
+            })}
+          </select>
+        </div>
+        <div className='form-group'>
+          <label htmlFor='book'>Book</label>
+          <select id='book' value={bookValue} onChange={handleBookChange}>
+            <option value='All Books'>All Books</option>
+            {bookKey.map(bookValue => {
+              return <option value={bookValue}>{bookValue}</option>
             })}
           </select>
         </div>
