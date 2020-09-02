@@ -37,6 +37,8 @@ function App () {
 
   const [categoryKey, setCategoryKey] = useState(workingCategoryKey)
   const [bookKey, setBookKey] = useState(workingBookKey)
+  const allCategories = workingCategoryKey
+  const allBooks = workingBookKey
 
   //when question number or current card updates, run the function below and trigger
   // a re-render
