@@ -65,29 +65,55 @@ function App () {
   function handleCategoryChange (e) {
     e.preventDefault()
     setcategoryValue(e.target.value)
+    if (e.target.value === 'All Categories') {
+      setCategoryKey(allCategories)
+      setBookKey(allBooks)
+    } else {
+      const workingCategoryValue = e.target.value
+      workingBookKey = []
+
+      questions.forEach(question => {
+        const category = question.category
+        const book = question.book
+
+        if (
+          workingBookKey.indexOf(book) === -1 &&
+          question.category === workingCategoryValue
+        ) {
+          workingBookKey.push(question.book)
+        }
+      })
+
+      setBookKey(workingBookKey)
+    }
   }
 
   function handleBookChange (e) {
     e.preventDefault()
-    const workingBookValue = e.target.value
-    workingCategoryKey = []
     setBookValue(e.target.value)
+    const workingBookValue = e.target.value
+    if (e.target.value === 'All Books') {
+      setCategoryKey(allCategories)
+      setBookKey(allBooks)
+    } else {
+      workingCategoryKey = []
 
-    questions.forEach(question => {
-      const category = question.category
-      const book = question.book
+      questions.forEach(question => {
+        const category = question.category
+        const book = question.book
 
-      if (
-        workingCategoryKey.indexOf(category) === -1 &&
-        question.book === workingBookValue
-      ) {
-        console.log('we have a book value winner')
-        console.log('current question winnder is', question)
-        workingCategoryKey.push(question.category)
-      }
-    })
-    console.log('workingCategorykey', workingCategoryKey)
-    setCategoryKey(workingCategoryKey)
+        if (
+          workingCategoryKey.indexOf(category) === -1 &&
+          question.book === workingBookValue
+        ) {
+          console.log('we have a book value winner')
+          console.log('current question winnder is', question)
+          workingCategoryKey.push(question.category)
+        }
+      })
+      console.log('workingCategorykey', workingCategoryKey)
+      setCategoryKey(workingCategoryKey)
+    }
   }
 
   function handleSubmit (e) {
