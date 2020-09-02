@@ -76,34 +76,35 @@ function App () {
     e.preventDefault()
     const newCategoryValue = e.target.value
     setcategoryValue(newCategoryValue)
-    if (newCategoryValue === 'All Categories') {
-      setCategoryKey(allCategories)
+
+    const workingCategoryValue = e.target.value
+    const workingBookValue = bookValue
+    if (categoryValue === 'All Categories') {
+      workingBookKey = allBooks
     } else {
-      const workingCategoryValue = e.target.value
-      const workingBookValue = bookValue
       let workingBookKey = []
-      let workingCategoryKey = []
-      questions.forEach(question => {
-        const category = question.category
-        const book = question.book
-
-        if (
-          workingBookKey.indexOf(book) === -1 &&
-          question.category === workingCategoryValue
-        ) {
-          workingBookKey.push(question.book)
-        }
-
-        if (
-          workingCategoryKey.indexOf(category) === -1 &&
-          question.book === workingBookValue
-        ) {
-          workingCategoryKey.push(question.category)
-        }
-      })
-
-      setBookKey(workingBookKey)
     }
+
+    questions.forEach(question => {
+      const category = question.category
+      const book = question.book
+
+      if (
+        workingBookKey.indexOf(book) === -1 &&
+        question.category === workingCategoryValue
+      ) {
+        workingBookKey.push(question.book)
+      }
+
+      if (
+        workingCategoryKey.indexOf(category) === -1 &&
+        question.book === workingBookValue
+      ) {
+        workingCategoryKey.push(question.category)
+      }
+    })
+
+    setBookKey(workingBookKey)
   }
 
   function handleBookChange (e) {
@@ -128,7 +129,7 @@ function App () {
           workingCategoryKey.push(question.category)
         }
       })
-      console.log('workingCategorykey', workingCategoryKey)
+
       setCategoryKey(workingCategoryKey)
     }
   }
@@ -138,17 +139,28 @@ function App () {
 
     setquestionNumber(0)
     setFlashcards(questions)
-    if (categoryValue !== 'All Categories') {
-      const filteredByCategory = []
-
-      questions.forEach(question => {
-        if (question.category === categoryValue) {
-          filteredByCategory.push(question)
-        }
-      })
-      setquestionNumber(0)
-      setFlashcards(filteredByCategory)
+    let categoryTruthy = false
+    let bookTruthy = false
+    if (categoryValue === 'All Categories') {
+      categoryTruthy = true
     }
+
+    if (bookValue === 'All Books') {
+      bookTruthy = true
+    }
+
+    const filteredResults = []
+
+    questions.forEach(question => {
+      if (
+        (question.category === categoryValue || categoryTruthy === true) &&
+        (question.book === bookValue || bookTruthy === true)
+      ) {
+        filteredResults.push(question)
+      }
+    })
+    setquestionNumber(0)
+    setFlashcards(filteredResults)
   }
 
   return (
