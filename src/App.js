@@ -39,8 +39,6 @@ function App () {
   const [bookKey, setBookKey] = useState(workingBookKey)
   const allCategories = workingCategoryKey
   const allBooks = workingBookKey
-  console.log('allCategoris', allCategories)
-  console.log('allbooks', allBooks)
 
   //when question number or current card updates, run the function below and trigger
   // a re-render
@@ -74,98 +72,42 @@ function App () {
 
   function handleCategoryChange (e) {
     e.preventDefault()
-    const newCategoryValue = e.target.value
-    setcategoryValue(newCategoryValue)
 
-    const workingCategoryValue = e.target.value
-    const workingBookValue = bookValue
-    if (categoryValue === 'All Categories') {
-      workingBookKey = allBooks
-    } else {
-      let workingBookKey = []
-    }
-
-    questions.forEach(question => {
-      const category = question.category
-      const book = question.book
-
-      if (
-        workingBookKey.indexOf(book) === -1 &&
-        question.category === workingCategoryValue
-      ) {
-        workingBookKey.push(question.book)
-      }
-
-      if (
-        workingCategoryKey.indexOf(category) === -1 &&
-        question.book === workingBookValue
-      ) {
-        workingCategoryKey.push(question.category)
+    setquestionNumber(0)
+    setcategoryValue(e.target.value)
+    const filteredResults = []
+    questions.forEach((question, index) => {
+      if (question.category === e.target.value) {
+        console.log(question)
+        filteredResults.push(question)
       }
     })
 
-    setBookKey(workingBookKey)
+    console.log('filteredresults', filteredResults)
+    setFlashcards(filteredResults)
+    setBookValue('All Books')
   }
 
   function handleBookChange (e) {
     e.preventDefault()
-    setBookValue(e.target.value)
-    const workingBookValue = e.target.value
-    if (e.target.value === 'All Books') {
-      setBookKey(allBooks)
-    } else {
-      workingCategoryKey = []
-
-      questions.forEach(question => {
-        const category = question.category
-        const book = question.book
-
-        if (
-          workingCategoryKey.indexOf(category) === -1 &&
-          question.book === workingBookValue
-        ) {
-          console.log('we have a book value winner')
-          console.log('current question winnder is', question)
-          workingCategoryKey.push(question.category)
-        }
-      })
-
-      setCategoryKey(workingCategoryKey)
-    }
-  }
-
-  function handleSubmit (e) {
-    e.preventDefault()
-
     setquestionNumber(0)
-    setFlashcards(questions)
-    let categoryTruthy = false
-    let bookTruthy = false
-    if (categoryValue === 'All Categories') {
-      categoryTruthy = true
-    }
-
-    if (bookValue === 'All Books') {
-      bookTruthy = true
-    }
-
+    setBookValue(e.target.value)
     const filteredResults = []
-
-    questions.forEach(question => {
-      if (
-        (question.category === categoryValue || categoryTruthy === true) &&
-        (question.book === bookValue || bookTruthy === true)
-      ) {
+    questions.forEach((question, index) => {
+      if (question.book === e.target.value) {
+        console.log(question)
         filteredResults.push(question)
       }
     })
-    setquestionNumber(0)
+
+    console.log('filteredresults', filteredResults)
     setFlashcards(filteredResults)
+    setcategoryValue('All Categories')
   }
 
   return (
     <>
-      <form className='header' onSubmit={handleSubmit}>
+      <form className='header'>
         <div className='form-group'>
           <label htmlFor='category'>Category</label>
           <select
@@ -189,9 +131,7 @@ function App () {
           </select>
         </div>
 
-        <div className='form-group'>
-          <button className='btn'>Update Deck</button>
-        </div>
+        <div className='form-group'></div>
       </form>
       <div className='container'>
         <FlashcardList currentCard={currentCard} />
