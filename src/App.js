@@ -75,16 +75,22 @@ function App () {
 
     setquestionNumber(0)
     setcategoryValue(e.target.value)
-    const filteredResults = []
-    questions.forEach((question, index) => {
-      if (question.category === e.target.value) {
-        console.log(question)
-        filteredResults.push(question)
-      }
-    })
 
-    console.log('filteredresults', filteredResults)
-    setFlashcards(filteredResults)
+    if (e.target.value === 'All Categories') {
+      setFlashcards(questions)
+    } else {
+      const filteredResults = []
+      questions.forEach((question, index) => {
+        if (question.category === e.target.value) {
+          console.log(question)
+          filteredResults.push(question)
+        }
+      })
+
+      console.log('filteredresults', filteredResults)
+      setFlashcards(filteredResults)
+    }
+
     setBookValue('All Books')
   }
 
@@ -92,16 +98,22 @@ function App () {
     e.preventDefault()
     setquestionNumber(0)
     setBookValue(e.target.value)
-    const filteredResults = []
-    questions.forEach((question, index) => {
-      if (question.book === e.target.value) {
-        console.log(question)
-        filteredResults.push(question)
-      }
-    })
 
-    console.log('filteredresults', filteredResults)
-    setFlashcards(filteredResults)
+    if (e.target.value === 'All Books') {
+      setFlashcards(questions)
+    } else {
+      const filteredResults = []
+      questions.forEach((question, index) => {
+        if (question.book === e.target.value) {
+          console.log(question)
+          filteredResults.push(question)
+        }
+      })
+
+      console.log('filteredresults', filteredResults)
+      setFlashcards(filteredResults)
+    }
+
     setcategoryValue('All Categories')
   }
 
