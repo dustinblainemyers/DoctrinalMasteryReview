@@ -25,7 +25,9 @@ export default function Flashcard ({ currentCard }) {
     >
       <div className='front'>
         <p>{currentCard.question}</p>
-        <p className='book'>{currentCard.book}</p>
+        <p className='book'>
+          {currentCard.bookInvisible === true ? <p></p> : currentCard.book}
+        </p>
       </div>
       <div className='back'>
         <div

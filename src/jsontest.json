@@ -176,10 +176,11 @@
   },
   {
     "question": "In the First Vision, God called Joseph Smith to be a prophet.\nD&C Year (in PofGP)",
-    "book": "PofGP",
+    "book": "D&C",
     "answer": "Joseph Smith-History 1:15-20\n\nJoseph Smith's First Vision",
     "category": "The Restoration",
-    "id": 26
+    "id": 26,
+    "bookInvisible": true
   },
   {
     "question": "The voice of the Lord and His servants is the same.",
@@ -351,24 +352,27 @@
   },
   {
     "question": "God's work and glory is to bring to pass the immortality and eternal life of man\nOT year (in PofGP)",
-    "book": "PofGP",
+    "book": "OT",
     "answer": "Moses 1:39\n\nMoses = Moses\n\nShovel is #1 and stands for work\n\nShiny shovel = God's glory\n\n39 For behold, this is my work and my glory-to bring to pass the immortality and eternal life of man.",
     "category": "The Plan of Salvation",
-    "id": 51
+    "id": 51,
+    "bookInvisible": true
   },
   {
     "question": "Zion-one heart and one mind in righteousness.\nOT Year (in PofGP)",
-    "book": "PofGP",
+    "book": "OT",
     "answer": "Moses 7:18\n\nMoses has one heart and one mind\n\nMoses with his staff = Moses 7\n\n18 And the Lord called his people Zion, because they were of one heart and one mind, and dwelt in righteousness; and there was no poor among them.",
     "category": "The Restoration",
-    "id": 52
+    "id": 52,
+    "bookInvisible": true
   },
   {
     "question": "Abraham was chosen before he was born\nOT year (in PofGP)",
-    "book": "PofGP",
+    "book": "OT",
     "answer": "Abraham 3:22-23\n\nAbraham Lincoln for Abraham\n\n3 rulers\n\n22 Now the Lord had shown unto me, Abraham, the intelligences that were organized before the world was; and among all these there were many of the noble and great ones;\n\n23 And God saw these souls that they were good, and he stood in the midst of them, and he said: These I will make my rulers; for he stood among those that were spirits, and he saw that they were good; and he said unto me: Abraham, thou art one of them; thou wast chosen before thou wast born.",
     "category": "The Plan of Salvation",
-    "id": 53
+    "id": 53,
+    "bookInvisible": true
   },
   {
     "question": "God created man in His own image",
