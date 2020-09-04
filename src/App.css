@@ -101,6 +101,7 @@ body {
 .card .back {
   padding: 1rem;
   backface-visibility: hidden;
+  transform: rotateX(0deg);
 }
 
 .card .back {
