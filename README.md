@@ -4,4 +4,4 @@ Doctrinal Mastery is a quizlet clone I did for a client on Upwork using React. I
 
 Client is a teacher with an audience of around 20,000 students. The clients flashcard deck needed to be taken off of Quizlet in order to reduce the friction from students being forced to signup for Quizlet. The goal was to make everything as simple as possible with as few steps as possible in order to increase the odds a student will choose to use the site.
 
-[Live Site](www.doctrinalmasteryreview.com)
+[Live Site](http://www.doctrinalmasteryreview.com)
